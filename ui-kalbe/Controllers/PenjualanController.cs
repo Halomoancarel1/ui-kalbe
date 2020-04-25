@@ -19,9 +19,10 @@ namespace ui_kalbe.Controllers
                          select new JoinSales
                          {
                              id = b.intSalesOrderID,
-                             test = b.intQty,
-                             haha = c.txtCustomerName
+                             qty = b.intQty,
+                             customerName = c.txtCustomerName
                          }).ToList();
+
                 return View(a.ToList());
             }
         }

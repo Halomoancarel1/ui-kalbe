@@ -31,7 +31,11 @@ namespace ui_kalbe.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
-            return View();
+            using (DbModels dbModel = new DbModels())
+            {
+                var a = dbModel.Customers.ToList();
+                return View();
+            }
         }
 
         // POST: Product/Create
