@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ui_kalbe.Models.Penjualan>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.intSalesOrderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intCustomerID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intProductID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtSalesOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intQty)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.intSalesOrderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intCustomerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intProductID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtSalesOrder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intQty)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
