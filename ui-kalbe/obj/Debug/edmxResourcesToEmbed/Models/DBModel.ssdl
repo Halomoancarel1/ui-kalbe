@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProdukModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="intCustomerID" />
+    </Key>
+    <Property Name="intCustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="txtCustomerName" Type="varchar" MaxLength="50" />
+    <Property Name="txtCustomerAddress" Type="varchar" MaxLength="300" />
+    <Property Name="bitGender" Type="bit" />
+    <Property Name="dtmBirthDate" Type="datetime" />
+    <Property Name="Inserted" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Penjualan">
+    <Key>
+      <PropertyRef Name="intSalesOrderID" />
+    </Key>
+    <Property Name="intSalesOrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="intCustomerID" Type="int" />
+    <Property Name="intProductID" Type="int" />
+    <Property Name="dtSalesOrder" Type="datetime" />
+    <Property Name="intQty" Type="float" />
+  </EntityType>
+  <EntityType Name="Produk">
+    <Key>
+      <PropertyRef Name="intProductID" />
+    </Key>
+    <Property Name="intProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="txtProductCode" Type="varchar" MaxLength="50" />
+    <Property Name="txtProductName" Type="varchar(max)" />
+    <Property Name="intQty" Type="int" />
+    <Property Name="decPrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="dtInserted" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Penjualan_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Penjualan" Type="Self.Penjualan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="intCustomerID" />
+      </Principal>
+      <Dependent Role="Penjualan">
+        <PropertyRef Name="intCustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Penjualan_Produk">
+    <End Role="Produk" Type="Self.Produk" Multiplicity="0..1" />
+    <End Role="Penjualan" Type="Self.Penjualan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produk">
+        <PropertyRef Name="intProductID" />
+      </Principal>
+      <Dependent Role="Penjualan">
+        <PropertyRef Name="intProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProdukModelStoreContainer">
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Penjualan" EntityType="Self.Penjualan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Produk" EntityType="Self.Produk" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Penjualan_Customer" Association="Self.FK_Penjualan_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Penjualan" EntitySet="Penjualan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Penjualan_Produk" Association="Self.FK_Penjualan_Produk">
+      <End Role="Produk" EntitySet="Produk" />
+      <End Role="Penjualan" EntitySet="Penjualan" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

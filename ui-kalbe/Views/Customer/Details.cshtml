@@ -1,0 +1,66 @@
+﻿@model ui_kalbe.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.intCustomerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.intCustomerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txtCustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txtCustomerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txtCustomerAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txtCustomerAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bitGender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bitGender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtmBirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtmBirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inserted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inserted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
